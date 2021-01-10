@@ -19,8 +19,8 @@ public class FiveStarReviews {
 		int identifier =0;
 		double sum = 0;
 		int counter =0;
-	    
-		
+
+
 		while(sum*100<targetThreshhold) {
 			sum=0;
 			maxDelta = 0;
@@ -32,18 +32,17 @@ public class FiveStarReviews {
 					identifier = i;
 				}
 				sum+=avg;
+			}
+			if(sum*100<targetThreshhold) {
+				counter++;
+				productRatings[identifier][0] = productRatings[identifier][0] +1;
+				productRatings[identifier][1] = productRatings[identifier][1] +1;
+				sum = sum+maxDelta;
+			}
 		}
-		if(sum*100<targetThreshhold) {
-			counter++;
-		}
-		productRatings[identifier][0] = productRatings[identifier][0] +1;
-		productRatings[identifier][1] = productRatings[identifier][1] +1;
-		sum = sum+maxDelta;
 
-		}
-		
 		return counter;
-	    }
+	}
 
 	private double calculateDelta(int rating, int number) {
 		double delta = ( (double) (rating+1)/(number+1))-calculateAvg(rating, number);
